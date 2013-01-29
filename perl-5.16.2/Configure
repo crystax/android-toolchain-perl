@@ -1723,6 +1723,7 @@ Usage: $me [-dehrsEKOSV] [-f config.sh] [-D symbol] [-D symbol=value]
          -Dinc_version_list=none  do not include older perl trees in @INC
          -DEBUGGING=none          DEBUGGING options
          -Dcc=gcc                 choose your compiler
+         -Dcc_as_ld               use cc as ld
          -Dprefix=/opt/perl5      choose your destination
   -E : stop at the end of questions, after having produced config.sh.
   -K : do not use unless you know what you are doing.
@@ -7974,6 +7975,10 @@ EOM
 		bin_ELF="$define"
 	fi
 	$rm_try
+
+        if [ $cc_as_ld = "$define" ] ; then
+            ld="$cc"
+        fi
 
 	case "$ld" in
 	'')	if $test $bin_ELF = "$define"; then
