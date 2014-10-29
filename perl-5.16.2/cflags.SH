@@ -196,6 +196,14 @@ case "$gccversion" in
   ;;
 esac
 
+case "$gccversion" in
+    4.9.*)
+        ccflags=`echo $ccflags|sed -e 's/-std=c89/ /'`
+        warn=`echo $warn|sed -e 's/-ansi/ /'`
+        stdflags=`echo $stdflags|sed -e 's/-std=c89/ /'`
+        ;;
+esac
+
 # Code to set any extra flags here.
 extra=''
 
